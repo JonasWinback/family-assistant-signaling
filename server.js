@@ -4,10 +4,17 @@ const http = require('http');
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({ 
+  server,
+  path: '/ws' // Lägg till explicit path
+});
 
 // Store connected clients by family code
 const families = new Map();
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy' });
+});
 
 // Health check endpoint
 app.get('/', (req, res) => {
