@@ -4,10 +4,7 @@ const http = require('http');
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ 
-  server,
-  path: '/ws' // Lägg till explicit path
-});
+const wss = new WebSocket.Server({ server });
 
 // Store connected clients by family code
 const families = new Map();
